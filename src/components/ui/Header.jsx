@@ -2,7 +2,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa";
 import { LiaCartPlusSolid } from "react-icons/lia";
+import { useNavigate } from "react-router-dom";
 const Header = () => {
+  
+  const navigate = useNavigate();
+
   return (
     <div className="header-container">
       <header className="header">
@@ -36,7 +40,10 @@ const Header = () => {
           <button className="wishlist">
             <FaRegHeart />
           </button>
-          <button className="myCart">
+          <button
+            className="myCart"
+            onClick={() => navigate("/cart")}
+          >
             <LiaCartPlusSolid />
           </button>
         </div>

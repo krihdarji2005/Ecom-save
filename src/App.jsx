@@ -5,6 +5,7 @@ import AppLayout from "./components/layout/AppLayout"
 import ErrorElement from './pages/ErrorElement';
 import Home from './pages/Home';
 import Store from './pages/Store';
+import Cart from './pages/Cart';
 
 
 function App() {
@@ -22,7 +23,11 @@ function App() {
         {
           path:"store",
           element:<Store/>
-        }
+        },
+        {
+          path:"cart",
+          element:<Cart/>
+        },
       ],
 
     },

@@ -1,6 +1,8 @@
 import React from "react";
 import heroImg from "../../assets/heroImg.jpg"
 import { NavLink } from 'react-router-dom'
+
+
 const Hero = () => {
   return (
     <>

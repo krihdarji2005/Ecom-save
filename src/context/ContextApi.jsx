@@ -1,30 +1,38 @@
-import React, { Children, createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from "react";
 
 export const DataContext = createContext();
-export const ContextApi = () => {
- const [items,setItems]=useState(null);
+
+export const ContextApi = ({children}) => {
+  const [items, setItems] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchCountryData = async () =>{
-    try{
-        const response = await fetch("https://api.escuelajs.co/api/v1/products");
+  useEffect(() => {
+    const fetchStoreItems = async () => {
+      try {
+        const response = await fetch(
+          "https://api.escuelajs.co/api/v1/products"
+        );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
         setItems(data);
       } catch (error) {
-        console.error("Error fetching country data:", error);
+        console.error("Error fetching products data:", error);
         setError(error.message);
       } finally {
         setLoading(false);
       }
-    
-  }
-  return (
-    <div>ContextApi</div>
-  )
-}
+    };
+    fetchStoreItems();
+  }, []);
 
-export default ContextApi
+  return (
+    <DataContext.Provider value={{ items, loading, error }}>
+      {children}
+    </DataContext.Provider>
+  );
+};
+
+export default ContextApi;
