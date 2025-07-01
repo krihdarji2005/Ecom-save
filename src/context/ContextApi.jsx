@@ -29,7 +29,7 @@ export const ContextApi = ({children}) => {
   }, []);
 
   return (
-    <DataContext.Provider value={{ items, loading, error }}>
+    <DataContext.Provider value={{ items, loading, error ,setItems}}>
       {children}
     </DataContext.Provider>
   );

@@ -6,7 +6,8 @@ import ErrorElement from './pages/ErrorElement';
 import Home from './pages/Home';
 import Store from './pages/Store';
 import Cart from './pages/Cart';
-
+import Wishlist from './pages/Wishlist';
+import ProductDetails from "./components/layout/ProductDetails";
 
 function App() {
  
@@ -27,6 +28,14 @@ function App() {
         {
           path:"cart",
           element:<Cart/>
+        },
+        {
+          path:"wishlist",
+          element:<Wishlist/>
+        },
+        {
+          path:"store/:id",
+          element:<ProductDetails/>
         },
       ],
 

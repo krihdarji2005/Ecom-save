@@ -1,36 +1,54 @@
 import React from "react";
 import {
   AiOutlineHeart,
+  AiFillHeart,
   AiOutlineShoppingCart,
   AiFillStar,
 } from "react-icons/ai";
 import { useCart } from "../../context/FunctionalitiesContext";
+import { NavLink } from "react-router-dom";
 
 export default function ProductCardVertical({ item }) {
-  const { cart, cartDispatch } = useCart();
+  const { cart, wishlist, cartDispatch } = useCart();
   const isItemInCart = cart?.some((curritem) => curritem.id === item.id);
-  const handleAddToCartClick = (item) => {
+  const isItemInWishlist = wishlist?.some(
+    (curritem) => curritem.id === item.id
+  );
+
+  const handleAddToCartClick = () => {
     if (!isItemInCart) cartDispatch({ type: "ADD_TO_CART", payload: { item } });
+  };
+  const handleWishlistClick = () => {
+    cartDispatch({ type: "TOGGLE_WISHLIST", payload: { item } });
   };
   return (
     <div style={styles.card}>
       <div style={styles.imageContainer}>
-        <a href="#">
+        <NavLink to={`/store/${item.id}`}>
           <img
             src={item.images?.[0] || item.images?.[1]}
             alt={item.title}
             style={styles.image}
           />
-        </a>
-        <button style={styles.wishlistButton} aria-label="Add to wishlist">
-          <AiOutlineHeart size={20} />
+        </NavLink>
+        <button
+          style={styles.wishlistButton}
+          aria-label="Add to wishlist"
+          onClick={() => handleWishlistClick(item)}
+
+        >
+          {isItemInWishlist ? (
+            <AiFillHeart size={20} color="red"/>
+          ) : (
+            <AiOutlineHeart size={20} />
+          )}
         </button>
       </div>
 
       <div style={styles.content}>
-        <a href="#" style={styles.title}>
+        <NavLink to={`/store/${item.id}`} style={styles.title}>
           {item.title}
-        </a>
+        </NavLink>
         <div style={styles.ratingRow}>
           {[...Array(5)].map((_, i) => (
             <AiFillStar key={i} size={14} color="#FFD700" />
@@ -42,8 +60,10 @@ export default function ProductCardVertical({ item }) {
         <p style={styles.description}>{item.description}</p>
         <span style={styles.price}>₹{item.price * 10}</span>
         <button
-          style={styles.cartButton}
-          onClick={() => handleAddToCartClick(item)}
+       
+          onClick={handleAddToCartClick}
+          style={isItemInCart ? styles.disabledCartButton : styles.cartButton}
+          disabled = {isItemInCart}
         >
           <AiOutlineShoppingCart size={16} style={{ marginRight: 8 }} />
           {isItemInCart ? "Added to cart" : "Add to Cart"}
@@ -72,15 +92,16 @@ const styles = {
     objectFit: "cover",
     borderRadius: "8px 8px 0 0",
   },
-  wishlistButton: {
+ wishlistButton: {
     position: "absolute",
     bottom: "8px",
     right: "8px",
     backgroundColor: "white",
     border: "1px solid #ddd",
     borderRadius: "50%",
-    padding: "6px",
+    padding: "8px 6px",
     cursor: "pointer",
+    transition: "all 0.3s ease",
   },
   content: {
     padding: "16px",
@@ -127,4 +148,17 @@ const styles = {
     display: "flex",
     alignItems: "center",
   },
+    disabledCartButton: {
+    backgroundColor: "#cccccc",
+    color: "#666666",
+    cursor: "not-allowed",
+    // Keep other properties the same as cartButton
+    padding: "8px 12px",
+    fontSize: "14px",
+    fontWeight: "600",
+    border: "none",
+    borderRadius: "4px",
+    display: "flex",
+    alignItems: "center",
+  }
 };

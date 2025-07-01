@@ -5,11 +5,12 @@ export const FunctionalititesContext = createContext();
 
 const FunctionalitiesProvider = ({children}) => {
   const initialState = {
-    cart:[]
+    cart:[],
+    wishlist:[],
   };
-  const [{cart}, cartDispatch] = useReducer(cartReducer, initialState);
+  const [{cart,wishlist}, cartDispatch] = useReducer(cartReducer, initialState);
   return(
-    <FunctionalititesContext.Provider value={{cart,cartDispatch}}>
+    <FunctionalititesContext.Provider value={{cart,wishlist,cartDispatch}}>
       {children }
     </FunctionalititesContext.Provider>
   );

@@ -37,7 +37,8 @@ const Header = () => {
 
         <div className="search-btns">
           <input type="text" placeholder="Search..."/>
-          <button className="wishlist">
+          <button className="wishlist"
+          onClick={() => navigate("/wishlist")}>
             <FaRegHeart />
           </button>
           <button

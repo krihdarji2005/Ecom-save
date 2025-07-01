@@ -5,19 +5,27 @@ import {
   AiOutlineDelete,
   AiFillTag,
 } from "react-icons/ai";
+import { useCart } from "../../context/FunctionalitiesContext";
 
 export default function ProductCardHorizontal({item}) {
   const inputId = useId();
   const min = 1;
   const max = 10;
   const [value, setValue] = useState(min);
-
+  const {cartDispatch}=useCart();
   const handleChange = (e) => {
     let val = parseInt(e.target.value, 10);
     if (isNaN(val)) val = min;
     setValue(Math.max(min, Math.min(max, val)));
   };
-
+  const handleRemoveButton = (item) =>{
+    cartDispatch(
+      {
+        type:"REMOVE_FROM_CART",
+        payload:{item}
+      }
+    )
+  }
   return (
     <div style={styles.card}>
       <div style={styles.imageContainer}>
@@ -38,7 +46,7 @@ export default function ProductCardHorizontal({item}) {
 
         <ul style={styles.detailsList}>
           <li>
-            <span style={styles.detailLabel}>Size:</span> <strong>6.5</strong>
+            <span style={styles.detailLabel}>Category:</span> <strong>{item.category.name}</strong>
           </li>
           <li>
             <span style={styles.detailLabel}>Color:</span> <strong>Red</strong>
@@ -46,7 +54,7 @@ export default function ProductCardHorizontal({item}) {
         </ul>
 
         <div style={styles.bottomRow}>
-          <span style={styles.price}>$2,345.99</span>
+          <span style={styles.price}>₹ {value*item.price}</span>
 
           <div style={styles.controlsWrapper}>
             <div style={styles.counter}>
@@ -83,9 +91,9 @@ export default function ProductCardHorizontal({item}) {
               </button>
             </div>
 
-            <button style={styles.removeBtn} aria-label="Remove">
+            <button style={styles.removeBtn} aria-label="Remove" onClick={() => handleRemoveButton(item)}>
               <AiOutlineDelete />
-              <span style={{ marginLeft: 6 }}>Remove</span>
+              <span style={{ marginLeft: 6 }} className="cartRemove">Remove</span>
             </button>
           </div>
         </div>
