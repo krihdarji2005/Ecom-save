@@ -7,7 +7,7 @@ import {
 } from "react-icons/ai";
 import { useCart } from "../../context/FunctionalitiesContext";
 import { NavLink } from "react-router-dom";
-
+import toast from 'react-hot-toast';
 export default function ProductCardVertical({ item }) {
   const { cart, wishlist, cartDispatch } = useCart();
   const isItemInCart = cart?.some((curritem) => curritem.id === item.id);
@@ -17,6 +17,7 @@ export default function ProductCardVertical({ item }) {
 
   const handleAddToCartClick = () => {
     if (!isItemInCart) cartDispatch({ type: "ADD_TO_CART", payload: { item } });
+    toast.success("Item added to cart");
   };
   const handleWishlistClick = () => {
     cartDispatch({ type: "TOGGLE_WISHLIST", payload: { item } });

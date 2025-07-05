@@ -8,7 +8,7 @@ import Store from './pages/Store';
 import Cart from './pages/Cart';
 import Wishlist from './pages/Wishlist';
 import ProductDetails from "./components/layout/ProductDetails";
-
+import { Toaster } from 'react-hot-toast';
 function App() {
  
   const router = createBrowserRouter([
@@ -43,7 +43,10 @@ function App() {
   ]);
 
   return (
+    <>
       <RouterProvider router={router}/>
+      <Toaster  position="top-right"/>
+    </>
   )
 }
 

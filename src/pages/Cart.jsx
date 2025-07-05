@@ -52,7 +52,7 @@ const Cart = () => {
           <span className="PlaceOrder-text">Place Order</span>
         </button>
         <button className="PlaceOrder-btn">
-          <NavLink to="/store">Shop more</NavLink>
+          <NavLink to="/store" className="PlaceOrder-text">Shop more</NavLink>
         </button>
       </div>
     </div>

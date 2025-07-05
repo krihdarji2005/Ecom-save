@@ -6,6 +6,7 @@ import {
   AiFillTag,
 } from "react-icons/ai";
 import { useCart } from "../../context/FunctionalitiesContext";
+import toast from 'react-hot-toast';
 
 export default function ProductCardHorizontal({item}) {
   const inputId = useId();
@@ -25,6 +26,8 @@ export default function ProductCardHorizontal({item}) {
         payload:{item}
       }
     )
+    toast.success("Item removed from cart");
+
   }
   return (
     <div style={styles.card}>

@@ -112,26 +112,6 @@ const ProductDetails = () => {
 
           <p className="product-description">{product.description}</p>
 
-          {/* Quantity Selector */}
-          <div className="quantity-selector">
-            <span className="quantity-label">Quantity:</span>
-            <div className="quantity-controls">
-              <button 
-                className="quantity-btn"
-                onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
-                disabled={quantity <= 1}
-              >
-                <AiOutlineMinus />
-              </button>
-              <span className="quantity-value">{quantity}</span>
-              <button 
-                className="quantity-btn"
-                onClick={() => setQuantity(prev => prev + 1)}
-              >
-                <AiOutlinePlus />
-              </button>
-            </div>
-          </div>
 
           {/* Action Buttons */}
           <div className="product-action-buttons">

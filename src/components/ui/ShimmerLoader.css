@@ -1,0 +1,145 @@
+/* ShimmerLoader.css */
+.shimmer-store-container {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 1.5rem auto;
+}
+
+/* Search bar shimmer */
+.shimmer-search-bar {
+  height: 40px;
+  width: 100%;
+  background: #f0f0f0;
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+/* New Arrivals/Category chips */
+.shimmer-category-chips {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+
+}
+
+.shimmer-chip {
+  flex: 0 0 auto;
+  width: 100px;
+  height: 50px;
+  border-radius: 50px;
+  background: #f0f0f0;
+  position: relative;
+  overflow: hidden;
+
+}
+
+/* Product grid */
+.shimmer-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 0.5rem 0;
+}
+
+.shimmer-product-card {
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fafafa;
+  position: relative;
+}
+
+.shimmer-product-image {
+  width: 100%;
+  height: 280px;
+  background: #e8e8e8;
+}
+
+.shimmer-product-content {
+  padding: 1rem;
+}
+
+.shimmer-product-title {
+  height: 24px;
+  width: 80%;
+  background: #e8e8e8;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.shimmer-product-rating {
+  height: 16px;
+  width: 120px;
+  background: #e8e8e8;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.shimmer-product-desc {
+  height: 14px;
+  width: 100%;
+  background: #e8e8e8;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+}
+
+.shimmer-product-desc:nth-child(2) {
+  width: 90%;
+}
+
+.shimmer-product-desc:nth-child(3) {
+  width: 80%;
+}
+
+.shimmer-product-price {
+  height: 24px;
+  width: 80px;
+  background: #e8e8e8;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+
+.shimmer-product-button {
+  height: 40px;
+  width: 100%;
+  background: #e8e8e8;
+  border-radius: 4px;
+}
+
+/* Shimmer animation */
+.shimmer-search-bar::after,
+.shimmer-chip::after,
+.shimmer-product-card::after,
+.shimmer-product-image::after,
+.shimmer-product-title::after,
+.shimmer-product-rating::after,
+.shimmer-product-desc::after,
+.shimmer-product-price::after,
+.shimmer-product-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.8) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
